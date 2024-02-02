@@ -3,9 +3,28 @@
     margin: 0;
 }
 
-#main {
-    height: 100vh;
+:root {
+    --background: #1e0e2a;
+    --primary: #8933c7;
+    --secondary: #8a1c35;
+    --tertiary: #3c67be;
+    --text: #ecd6fa;
+}
+
+body {
     width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url("sky.jpg");
+    /*background-color: black !important;*/
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    display: flex;
+    flex-direction: row;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,8 +43,92 @@
     flex-direction: column;
     gap: 10px;
     width: 200px;
+    align-items: center;
 }
 
 .person-fields > * {
     width: 100%;
+}
+
+input, select {
+    padding: 12px 12px;
+    border-radius: 12px;
+    /*border: 1px solid var(--primary);*/
+    border: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-weight: bold;
+}
+
+input::placeholder {
+    color: color-mix(in srgb, var(--text) 80%, transparent)
+}
+
+::-webkit-calendar-picker-indicator {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23ecd6fa" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
+option {
+    border-radius: 20px;
+}
+
+input {
+    box-sizing: border-box;
+}
+
+button {
+    padding: 12px 16px;
+    border-radius: 25px;
+    transition: all 0.25s;
+    border: 0;
+    background-color: var(--primary);
+    color: var(--text);
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--tertiary);
+    color: var(--text);
+    cursor: pointer;
+    scale: 110%;
+}
+
+#result {
+    display: block;
+    position: relative;
+}
+
+#error {
+    height: 20px;
+    width: 100%;
+}
+
+#percentage-bubble {
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0;
+    transition: all 0.5s;
+    font-weight: bold;
+}
+
+#percentage-bubble[data-result] {
+    width: 75px;
+    height: 75px;
+    scale: 100%;
+}
+
+#percentage-bubble[data-result="bad"] {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+}
+
+#percentage-bubble[data-result="normal"] {
+    background: linear-gradient(45deg, var(--secondary), var(--tertiary));
+}
+
+#percentage-bubble[data-result="good"] {
+    background: linear-gradient(45deg, var(--primary), var(--tertiary));
 }

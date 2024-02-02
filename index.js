@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const person1OrientationElement = document.getElementById("orientation1")
     const person2OrientationElement = document.getElementById("orientation2")
 
-    const resultElement = document.getElementById("result")
+    const percentageBubbleElement = document.getElementById("percentage-bubble")
+    const percentageElement = document.getElementById("percentage")
 
     const errorElement = document.getElementById("error")
 
@@ -17,12 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showResult(result) {
-        resultElement.innerText = result
+        let resultStr;
+        if (result >= 80) {
+            resultStr = "good"
+        } else if (result >= 60 && result < 80) {
+            resultStr = "normal"
+        } else {
+            resultStr = "bad"
+        }
+        percentageBubbleElement.dataset.result = resultStr
+        percentageElement.innerText = result + '%'
     }
 
     function hideResultAndError() {
         errorElement.innerText = ""
-        resultElement.innerText = ""
+        percentageElement.innerText = ""
+        percentageBubbleElement.removeAttribute('data-result')
     }
 
     for (const fields of document.getElementsByClassName("person-fields")) {
@@ -41,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const person1Orientation = person1OrientationElement.value
         const person2Orientation = person2OrientationElement.value
 
+        if (person1birth === null || person2birth === null) {
+            showError("missing birth dates!")
+            return
+        }
+        
         const whoPedophile = getPedophile(person1birth, person2birth)
         if (whoPedophile !== null) {
             showError("the age gap is too big!")
