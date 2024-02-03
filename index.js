@@ -113,7 +113,7 @@ function areGendersCompatible(person1Gender, person1Orientation, person2Gender, 
     }
 
     if (person1Gender !== person2Gender) {
-        return person1Gender !== "homosexual" && person2Gender !== "homosexual"
+        return person1Orientation !== "homosexual" && person2Orientation !== "homosexual"
     }
 
     return true
