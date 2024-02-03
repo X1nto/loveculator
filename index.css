@@ -105,7 +105,7 @@ button {
 
 button:hover {
     background-color: var(--tertiary);
-    color: var(--text);
+    color: white;
     cursor: pointer;
     scale: 110%;
 }
