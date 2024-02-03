@@ -14,7 +14,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url("sky.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url("sky.webp");
     /*background-color: black !important;*/
     font-family: 'Inter', sans-serif;
     color: var(--text);
