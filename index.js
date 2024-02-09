@@ -56,8 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
             showError("missing birth dates!")
             return
         }
+
+        const person1age = getAge(person1birth)
+        const person2age = getAge(person2birth)
+
+        if (person1age < 13 || person2age < 13) {
+            showError("the minimum allowed age is 13!")
+            return
+        }
         
-        const whoPedophile = getPedophile(person1birth, person2birth)
+        const whoPedophile = getPedophile(person1age, person2age)
         if (whoPedophile !== null) {
             showError("the age gap is too big!")
             return
@@ -76,10 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-function getPedophile(person1birth, person2birth) {
-    const person1age = getAge(person1birth)
-    const person2age = getAge(person2birth)
-    
+function getPedophile(person1age, person2age) {
     console.table({"person1": person1age, "person2": person2age})
     
     if (person2age < getMinAge(person1age)) {
